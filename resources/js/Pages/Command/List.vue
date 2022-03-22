@@ -10,7 +10,7 @@ import Pagination from '@/Components/Pagination.vue';
 
 import { watch, ref } from "vue";
  
-let search = ref('');
+let search = ref(props.filters.search);
 
 watch(search, value => {
     console.log('Changed ' + value);
@@ -44,7 +44,7 @@ const submit = () => {
             <!--<h1 class="mb-8 text-3xl font-bold">Commands</h1>-->
             <div class="flex justify-between mb-6">
                 
-                <BreezeInput class="border px-2 rounded-xl" v-model="search" placeholder="Search ...">Search...</BreezeInput>
+                <BreezeInput class="border px-2 rounded-xl" v-model="search" placeholder="Search commands ...">Search...</BreezeInput>
             
                 <Link class="px-4 py-2 text-black-900 hover:text-black-800 bg-blue-200 rounded-md " href="/commands/create">
                     <span class="font-bold">Add</span>
@@ -52,7 +52,7 @@ const submit = () => {
             </div>
            
             <div class="bg-white rounded-md shadow overflow-x-auto mt-6">
-                <table class="w-full whitespace-nowrap">
+                <table class="w-full whitespace-normal">
                     <thead>
                       <tr class="text-left font-bold">
                         <th class="pb-4 pt-6 px-6">Command</th>

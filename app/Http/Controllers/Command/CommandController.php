@@ -40,11 +40,14 @@ class CommandController extends Controller
                           ->orWhere('description', 'like', "%{$search}%");  
                 })
                 ->paginate(5)
+                ->withQueryString()
                 ->through(fn($command) => [
                     'id' => $command->id,
                     'command' => $command->command,
                     'description' => $command->description
-            ]) 
+                ]),
+            
+            'filters' => $request->only(['search'])
         ]);
 
     

@@ -22527,7 +22527,7 @@ var __default__ = {
     var expose = _ref.expose;
     expose();
     var props = __props;
-    var search = (0,vue__WEBPACK_IMPORTED_MODULE_8__.ref)('');
+    var search = (0,vue__WEBPACK_IMPORTED_MODULE_8__.ref)(props.filters.search);
     (0,vue__WEBPACK_IMPORTED_MODULE_8__.watch)(search, function (value) {
       console.log('Changed ' + value);
       _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_7__.Inertia.get('/commands', {
@@ -24222,7 +24222,7 @@ var _hoisted_5 = {
   "class": "bg-white rounded-md shadow overflow-x-auto mt-6"
 };
 var _hoisted_6 = {
-  "class": "w-full whitespace-nowrap"
+  "class": "w-full whitespace-normal"
 };
 
 var _hoisted_7 = /*#__PURE__*/_withScopeId(function () {
@@ -24254,7 +24254,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
           return $setup.search = $event;
         }),
-        placeholder: "Search ..."
+        placeholder: "Search commands ..."
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [_hoisted_3];

@@ -936,8 +936,21 @@ select {
 .overflow-x-auto {
   overflow-x: auto;
 }
+.whitespace-normal {
+  white-space: normal;
+}
 .whitespace-nowrap {
   white-space: nowrap;
+}
+.break-normal {
+  overflow-wrap: normal;
+  word-break: normal;
+}
+.break-words {
+  overflow-wrap: break-word;
+}
+.break-all {
+  word-break: break-all;
 }
 .rounded-md {
   border-radius: 0.375rem;
