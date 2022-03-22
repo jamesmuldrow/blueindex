@@ -22,6 +22,7 @@ class CommandController extends Controller
     
     public function store(Request $request)
     {
+        //return Command::paginate(15);
     
         $command = new Command; 
         $command->command = $request->command;
@@ -30,7 +31,7 @@ class CommandController extends Controller
         $command->save();
         
         
-        return redirect('commands');
+        return redirect('commands/?page=' . Command::paginate(5)->lastPage());
     }
     
      public function update(Request $request)

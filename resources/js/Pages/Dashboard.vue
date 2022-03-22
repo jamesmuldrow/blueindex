@@ -8,9 +8,9 @@ import { Head } from '@inertiajs/inertia-vue3';
     
     <BreezeAuthenticatedLayout>
         <div class="container mx-auto pt-10">
-            <h1 class="mb-8 text-3xl font-bold">Dashboard</h1>
+
             <div class="columns-1 py-10" style="text-align:center;">
-                Search goes here.
+                Search goes here....
             </div>
             <div class="grid grid-cols-4 gap-4 pt-10">
                 <div style="text-align:left;">
