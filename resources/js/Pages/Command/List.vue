@@ -7,18 +7,20 @@ import BreezeValidationErrors from '@/Components/ValidationErrors.vue';
 import { Head, Link, useForm} from '@inertiajs/inertia-vue3';
 import { Inertia } from "@inertiajs/inertia";
 import Pagination from '@/Components/Pagination.vue';
+import debounce from "lodash/debounce"
 
 import { watch, ref } from "vue";
  
 let search = ref(props.filters.search);
 
-watch(search, value => {
-    console.log('Changed ' + value);
-    Inertia.get('/commands', {search: value}, {
-        preserveState: true
+watch(search, debounce(() => {
+    
+    Inertia.get('/commands', {search: search.value}, {
+        preserveState: true,
+        replace: true
     });
     
-});
+}, 0));
 
 const props = defineProps({
   commands: Object,

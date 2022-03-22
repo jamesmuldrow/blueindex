@@ -6,6 +6,7 @@ use Inertia\Inertia;
 use App\Models\Command;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Command\CommandController;
+use App\Models\User;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,6 +19,11 @@ use App\Http\Controllers\Command\CommandController;
 */
 
 Route::get('/', function () {
+
+    if (Auth::check()){
+        return redirect('/dashboard');
+    }
+
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
