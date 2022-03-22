@@ -12,7 +12,7 @@ const form = useForm({
 });
 
 const submit = () => {
-    form.post(route('commands'));
+    form.post(route('commands.store'));
 };
 </script>
 

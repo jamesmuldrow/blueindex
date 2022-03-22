@@ -10,6 +10,46 @@ use App\Models\Command;
 
 class CommandController extends Controller
 {
+
+    /**
+     * Display the Command Index View
+     * 
+     * @return \Inertia\Response
+     */
+    public function index(Request $request)
+    {
+        
+        // dd(Command::query()
+        //     ->when($request->input('search'), function ($query, $search) {
+        //         $query->where('command', 'like', "%{$query}%"); 
+        //     })
+        //     ->paginate(5)
+        //     ->through(fn($command) => [
+        //         'id' => $command->id,
+        //         'command' => $command->command
+        //     ])
+        
+        // );
+
+        
+        
+        return Inertia::render('Command/List', [
+            'commands' => Command::query()
+                ->when($request->input('search'), function ($query, $search) {
+                    $query->where('command', 'like', "%{$search}%")
+                          ->orWhere('description', 'like', "%{$search}%");  
+                })
+                ->paginate(5)
+                ->through(fn($command) => [
+                    'id' => $command->id,
+                    'command' => $command->command,
+                    'description' => $command->description
+            ]) 
+        ]);
+
+    
+    }
+
     /**
      * Display the Command Create view.
      *
@@ -17,9 +57,10 @@ class CommandController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Command/Create');
+        return Inertia::render('Command/Add');
     }
     
+
     public function store(Request $request)
     {
         //return Command::paginate(15);
@@ -46,8 +87,21 @@ class CommandController extends Controller
         
         return redirect('commands');
     }
+
+    /**
+     * Edit Command data
+     * 
+     * @return redirect
+     */
+    public function edit($id)
+    {
+
+        return Inertia::render('Command/Edit',[
+            'command' => Command::find($id)
+        ]);
+    }
     
-    public function delete(Request $request)
+    public function destroy(Request $request)
     {
        
         $command = Command::find($request->id); 

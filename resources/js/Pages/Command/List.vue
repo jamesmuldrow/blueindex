@@ -4,10 +4,21 @@ import BreezeAuthLayout from '@/Layouts/Authenticated.vue';
 import BreezeInput from '@/Components/Input.vue';
 import BreezeLabel from '@/Components/Label.vue';
 import BreezeValidationErrors from '@/Components/ValidationErrors.vue';
-import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
+import { Head, Link, useForm} from '@inertiajs/inertia-vue3';
+import { Inertia } from "@inertiajs/inertia";
 import Pagination from '@/Components/Pagination.vue';
 
+import { watch, ref } from "vue";
+ 
+let search = ref('');
 
+watch(search, value => {
+    console.log('Changed ' + value);
+    Inertia.get('/commands', {search: value}, {
+        preserveState: true
+    });
+    
+});
 
 const props = defineProps({
   commands: Object,
@@ -20,7 +31,7 @@ const form = useForm({
 });
 
 const submit = () => {
-    form.post(route('command'));
+    form.post(route('commands.store'));
 };
 </script>
 
@@ -31,9 +42,11 @@ const submit = () => {
         
         <div class="container mx-auto pt-10 w-3/4">
             <!--<h1 class="mb-8 text-3xl font-bold">Commands</h1>-->
-          
-            <div style="text-align: right">
-                <Link class="pt-2 px-4 pb-2 text-black-900 hover:text-black-800 mr-5 bg-blue-200 rounded-md " href="/commands/add">
+            <div class="flex justify-between mb-6">
+                
+                <BreezeInput class="border px-2 rounded-xl" v-model="search" placeholder="Search ...">Search...</BreezeInput>
+            
+                <Link class="px-4 py-2 text-black-900 hover:text-black-800 bg-blue-200 rounded-md " href="/commands/create">
                     <span class="font-bold">Add</span>
                 </Link>
             </div>

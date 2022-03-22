@@ -19,12 +19,12 @@ const form = useForm({
 
 const submit = () => {
    
-    form.post(route('commands.edit', form.id))
+    form.patch(route('commands.update', form.id))
 };
 
 const remove = () => {
    
-    form.delete(route('commands.edit', form.id))
+    form.delete(route('commands.destroy', form.id))
 };
 </script>
 
