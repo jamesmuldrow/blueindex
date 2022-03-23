@@ -17,6 +17,7 @@ mix.js('resources/js/app.js', 'public/js')
         require('postcss-import'),
         require('tailwindcss'),
         require('autoprefixer'),
+        require("tailwindcss"),
     ])
     .webpackConfig(require('./webpack.config'));
 

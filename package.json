@@ -26,6 +26,7 @@
         "vue-loader": "^16.1.2"
     },
     "dependencies": {
+        "flowbite": "^1.4.1",
         "popper.js": "^1.16.1"
     }
 }

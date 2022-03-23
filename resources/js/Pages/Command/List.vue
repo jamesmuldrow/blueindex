@@ -46,7 +46,7 @@ const submit = () => {
             <!--<h1 class="mb-8 text-3xl font-bold">Commands</h1>-->
             <div class="flex justify-between mb-6">
                 
-                <BreezeInput class="border px-2 rounded-xl" v-model="search" placeholder="Search commands ...">Search...</BreezeInput>
+                <BreezeInput class="border px-2 rounded-xl" v-model="search" autofocus placeholder="Search commands ...">Search...</BreezeInput>
             
                 <Link class="px-4 py-2 text-black-900 hover:text-black-800 bg-blue-200 rounded-md " href="/commands/create">
                     <span class="font-bold">Add</span>
@@ -64,12 +64,12 @@ const submit = () => {
                     <tbody>
                         <tr v-for="item in commands.data" :key="item.id" class="hover:bg-gray-100 focus-within:bg-gray-100">
                             <td class="border-t pb-3 pt-3 px-6">
-                                <Link class="flex items-center px-6 py-4 focus:text-indigo-500" :href="`/commands/${item.id}/edit`">
+                                <Link class="flex items-center px-6 py-4 focus:text-indigo-500" :href="`/commands/${item.id}`">
                                   <p>{{ item.command }}</p>
                                 </Link> 
                             </td>
                             <td class="border-t pb-3 pt-3 px-6">
-                              <Link class="flex items-center px-6 py-4 focus:text-indigo-500" :href="`/commands/${item.id}/edit`">
+                              <Link class="flex items-center px-6 py-4 focus:text-indigo-500" :href="`/commands/${item.id}`">
                                   <p>{{ item.description }}</p>
                                 </Link> 
                             </td>  

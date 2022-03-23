@@ -22,7 +22,7 @@ const submit = () => {
     form.patch(route('commands.update', form.id))
 };
 
-const remove = () => {
+const destroy = () => {
    
     form.delete(route('commands.destroy', form.id))
 };
@@ -43,25 +43,26 @@ const remove = () => {
     
                 <div class="mt-4">
                     <BreezeLabel for="description" value="Description" />
-                    <BreezeInput id="description" type="text" class="mt-1 block w-full" v-model="form.description" required autocomplete="description" />
+                    <textarea id="description" type="" class="mt-1 h-40 block w-full" v-model="form.description" required autocomplete="description" />
                 </div>
     
                 
     
                 <div class="flex items-center justify-end mt-4">
-                    <form @submit.prevent="remove">
-                        <DeleteButton class="ml-4">
-                            Delete
-                        </DeleteButton>
-                    </form>
+                    <DeleteButton class="ml-4" @click="destroy" type="button">
+                        Delete
+                    </DeleteButton>
                     <BreezeButton class="ml-4">
                         Edit Command
                     </BreezeButton>
                 </div>
             </form>
+       
         </div>
         
     </BreezeAuthLayout>
+
+    
 </template>
 
 <style scoped>

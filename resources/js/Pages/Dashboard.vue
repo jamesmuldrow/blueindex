@@ -31,7 +31,7 @@ const props = defineProps({
         <div class="container mx-auto pt-10">
 
             <div class="" style="text-align:center;">
-                <BreezeInput class="border w-1/2 py-2 px-4 rounded-xl" v-model="search" placeholder="Search">Search...</BreezeInput>
+                <BreezeInput class="border w-1/2 py-2 px-4 rounded-xl" autofocus v-model="search" placeholder="Search">Search...</BreezeInput>
             </div>
             <div class="grid grid-cols-4 gap-4 pt-10">
                 <div style="text-align:left;">
