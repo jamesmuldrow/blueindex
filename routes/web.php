@@ -7,6 +7,7 @@ use App\Models\Command;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Command\CommandController;
 use App\Models\User;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,8 +31,25 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+Route::get('/dashboard', function (Request $request) {
+
+
+    return Inertia::render('Dashboard',[
+        'commands' => Command::query()
+            ->when($request->input('search'), function ($query, $search) {
+                $query->where('command', 'like', "%{$search}%")
+                      ->orWhere('description', 'like', "%{$search}%");  
+            })
+            ->paginate(5)
+            ->withQueryString()
+            ->through(fn($command) => [
+                'id' => $command->id,
+                'command' => $command->command,
+                'description' => $command->description
+            ]),
+        
+        'filters' => $request->only(['search'])
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::resource('/commands', CommandController::class )->middleware(['auth', 'verified']);

@@ -20,7 +20,7 @@ watch(search, debounce(() => {
         replace: true
     });
     
-}, 0));
+}, 500));
 
 const props = defineProps({
   commands: Object,

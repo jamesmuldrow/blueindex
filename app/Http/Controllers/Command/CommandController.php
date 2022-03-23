@@ -18,21 +18,7 @@ class CommandController extends Controller
      */
     public function index(Request $request)
     {
-        
-        // dd(Command::query()
-        //     ->when($request->input('search'), function ($query, $search) {
-        //         $query->where('command', 'like', "%{$query}%"); 
-        //     })
-        //     ->paginate(5)
-        //     ->through(fn($command) => [
-        //         'id' => $command->id,
-        //         'command' => $command->command
-        //     ])
-        
-        // );
-
-        
-        
+          
         return Inertia::render('Command/List', [
             'commands' => Command::query()
                 ->when($request->input('search'), function ($query, $search) {
@@ -100,6 +86,19 @@ class CommandController extends Controller
     {
 
         return Inertia::render('Command/Edit',[
+            'command' => Command::find($id)
+        ]);
+    }
+
+    /**
+     * Show Command data
+     * 
+     * @return redirect
+     */
+    public function show($id)
+    {
+
+        return Inertia::render('Command/Show',[
             'command' => Command::find($id)
         ]);
     }
