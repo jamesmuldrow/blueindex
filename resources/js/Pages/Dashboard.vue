@@ -4,6 +4,7 @@ import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
 import BreezeInput from '@/Components/Input.vue';
 import debounce from "lodash/debounce";
 import { Inertia } from "@inertiajs/inertia";
+import Pagination from '@/Components/Pagination.vue';
 
 import { watch, ref } from "vue";
 
@@ -42,6 +43,7 @@ const props = defineProps({
                             Add Category
                         </Link>
                     </div>
+                    
                     <table class="w-full whitespace-normal">
                         <tbody>
                             <tr v-for="item in categories.data" :key="item.id" class="shadow focus-within:bg-gray-100">
@@ -53,6 +55,7 @@ const props = defineProps({
                             </tr>
                         </tbody>
                     </table>
+                    <Pagination class="mt-6" :links="categories.links" />
                 </div>
                 <div class="col-span-2 rounded-md overflow-x-auto mt-6" style="text-align:center;">
                 <table class="w-full whitespace-normal">

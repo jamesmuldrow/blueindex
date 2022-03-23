@@ -51,7 +51,7 @@ Route::get('/dashboard', function (Request $request) {
             ]),
         
         'filters' => $request->only(['search']),
-        'categories' => Category::paginate(10)
+        'categories' => Category::paginate(5)
     ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 

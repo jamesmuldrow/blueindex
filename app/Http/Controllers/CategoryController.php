@@ -21,7 +21,7 @@ class CategoryController extends Controller
                 ->when($request->input('search'), function ($query, $search) {
                     $query->where('name', 'like', "%{$search}%");  
                 })
-                ->paginate(10)
+                ->paginate(5)
                 ->withQueryString()
                 ->through(fn($category) => [
                     'id' => $category->id,
