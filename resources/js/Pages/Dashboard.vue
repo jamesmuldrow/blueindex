@@ -20,6 +20,7 @@ watch(search, debounce(() => {
 
 const props = defineProps({
   commands: Object,
+  categories: Object,
   filters: Object,
 })
 </script>
@@ -35,7 +36,23 @@ const props = defineProps({
             </div>
             <div class="grid grid-cols-4 gap-4 pt-10">
                 <div style="text-align:left;">
-                  Categories go here - This is a list of categories that the commands in the database can fall under.
+                    <div class="flex justify-between mb-6">
+                        <strong>Categories</strong>
+                        <Link class="flex items-center text-sky-400 focus:text-indigo-500" :href="`/categories/create`">
+                            Add Category
+                        </Link>
+                    </div>
+                    <table class="w-full whitespace-normal">
+                        <tbody>
+                            <tr v-for="item in categories.data" :key="item.id" class="shadow focus-within:bg-gray-100">
+                                <td class="pb-2 pt-2 px-4">
+                                    <Link class="flex items-center px-4 py-2 focus:text-indigo-500" :href="`/categories/${item.id}`">
+                                        <p>{{ item.name }}</p>
+                                    </Link> 
+                                </td> 
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 <div class="col-span-2 rounded-md overflow-x-auto mt-6" style="text-align:center;">
                 <table class="w-full whitespace-normal">

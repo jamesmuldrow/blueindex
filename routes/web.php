@@ -4,8 +4,10 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Models\Command;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Command\CommandController;
+use App\Http\Controllers\CategoryController;
 use App\Models\User;
 
 /*
@@ -48,11 +50,15 @@ Route::get('/dashboard', function (Request $request) {
                 'description' => $command->description
             ]),
         
-        'filters' => $request->only(['search'])
+        'filters' => $request->only(['search']),
+        'categories' => Category::paginate(10)
     ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::resource('/commands', CommandController::class )->middleware(['auth', 'verified']);
+
+Route::resource('/categories', CategoryController::class )->middleware(['auth', 'verified']);
+
 
 
 require __DIR__.'/auth.php';
